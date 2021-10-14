@@ -3,8 +3,7 @@ package co.com.sofka.Biblioteca.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
-
+import java.util.Date;
 
 @Document
 public class Recurso {
@@ -12,10 +11,11 @@ public class Recurso {
     @Id
     private String id;
     private boolean disponible;
-    private LocalDate fecha;
+    private String fecha;
     private String nombreRecurso;
-    private String categoria;
-    private String tipoRecurso;
+    private String tipoRecursoId;
+    private String categoriaId;
+
 
     public String getId() {
         return id;
@@ -33,15 +33,11 @@ public class Recurso {
         this.disponible = disponible;
     }
 
-    public boolean isDisponible() {
-        return disponible;
-    }
-
-    public LocalDate getFecha() {
+   public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -53,19 +49,19 @@ public class Recurso {
         this.nombreRecurso = nombreRecurso;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getTipoRecursoId() {
+        return tipoRecursoId;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setTipoRecursoId(String tipoRecursoId) {
+        this.tipoRecursoId = tipoRecursoId;
     }
 
-    public String getTipoRecurso() {
-        return tipoRecurso;
+    public String getCategoriaId() {
+        return categoriaId;
     }
 
-    public void setTipoRecurso(String tipoRecurso) {
-        this.tipoRecurso = tipoRecurso;
+    public void setCategoriaId(String categoriaId) {
+        this.categoriaId = categoriaId;
     }
 }

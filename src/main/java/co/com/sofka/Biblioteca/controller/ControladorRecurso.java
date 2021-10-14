@@ -1,12 +1,13 @@
 package co.com.sofka.Biblioteca.controller;
-import co.com.sofka.Biblioteca.dtos.RecursoDTO;
-import co.com.sofka.Biblioteca.services.ServicioRecurso;
+
+import co.com.sofka.Biblioteca.dtos.RespuestaCategoriaDTO;
+import co.com.sofka.Biblioteca.dtos.RespuestaRecursoDTO;
+import co.com.sofka.Biblioteca.dtos.RespuestaTipoRecursoDTO;
+import co.com.sofka.Biblioteca.service.ServicioRecurso;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/biblioteca")
@@ -15,65 +16,51 @@ public class ControladorRecurso {
     ServicioRecurso servicioRecurso;
 
     @GetMapping("/consultar/{id}")
-    public ResponseEntity<String> consultarRecurso(@PathVariable String id){
-        var respuesta = servicioRecurso.consultarRecurso(id);
+    public ResponseEntity<RespuestaRecursoDTO> consultarRecurso(@PathVariable("id") String id){
+        RespuestaRecursoDTO respuesta = servicioRecurso.consultarRecurso(id);
         if(respuesta != null){
-            return  new ResponseEntity<>(respuesta, HttpStatus.OK);
+            return  new ResponseEntity(respuesta, HttpStatus.OK);
         }
-        return new ResponseEntity<>(respuesta, HttpStatus.NOT_FOUND);
+        return new ResponseEntity(respuesta, HttpStatus.NOT_FOUND);
 
     }
 
     @PutMapping("/prestar/{id}")
-    public ResponseEntity<String>prestarRecurso(@PathVariable String id){
-        var respuesta = servicioRecurso.prestarRecurso(id);
+    public ResponseEntity<RespuestaRecursoDTO>prestarRecurso(@PathVariable("id") String id){
+        RespuestaRecursoDTO respuesta = servicioRecurso.prestarRecurso(id);
         if(respuesta != null){
             return new ResponseEntity<>(respuesta, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
+
 
     @PutMapping("/devolver/{id}")
-    public ResponseEntity<String> devolverRecurso(@PathVariable String id){
-        var respuesta = servicioRecurso.devolverRecurso(id);
+    public ResponseEntity<RespuestaRecursoDTO> devolverRecurso(@PathVariable("id") String id){
+        RespuestaRecursoDTO respuesta = servicioRecurso.devolverRecurso(id);
         if(respuesta != null){
             return new ResponseEntity<>(respuesta, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<RecursoDTO> findbyId(@PathVariable("id") String id) {
-        return new ResponseEntity<>(servicioRecurso.obtenerPorId(id), HttpStatus.OK);
-    }
-
-    @GetMapping()
-    public ResponseEntity<List<RecursoDTO>> findAll() {
-        return new ResponseEntity<>(servicioRecurso.obtenerTodos(), HttpStatus.OK);
-    }
-
-    @PostMapping("/crear")
-    public ResponseEntity<RecursoDTO> create(@RequestBody RecursoDTO recursoDTO) {
-        return new ResponseEntity<>(servicioRecurso.crear(recursoDTO), HttpStatus.CREATED);
-    }
-
-    @PutMapping("/modificar")
-    public ResponseEntity<RecursoDTO> update(@RequestBody RecursoDTO recursoDTO) {
-        if (recursoDTO.getId() != null) {
-            return new ResponseEntity<>(servicioRecurso.modificar(recursoDTO), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") String id) {
-        try {
-            servicioRecurso.borrar(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+    @GetMapping("/listaporcategoria/{id}")
+    public ResponseEntity<RespuestaCategoriaDTO> listarPorCategoria(@PathVariable("id") String id){
+        var repuesta = servicioRecurso.consultarPorCategoria(id);
+        if(repuesta.getRecursosCategoria().size() == 0){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(repuesta, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/listatiporecurso/{id}")
+    public ResponseEntity<RespuestaTipoRecursoDTO> listarPorTipoRecurso(@PathVariable("id") String id) {
+        var respuesta = servicioRecurso.consultarPorTipoRecurso(id);
+        if(respuesta.getListTipoRecurso().size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(respuesta, HttpStatus.OK);
     }
 
 

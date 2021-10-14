@@ -1,15 +1,15 @@
 package co.com.sofka.Biblioteca.dtos;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class RecursoDTO {
 
     private String id;
     private boolean disponible;
-    private LocalDate fecha;
+    private String fecha;
     private String nombreRecurso;
-    private String categoria;
-    private String tipoRecurso;
+    private String categoriaId;
+    private String tipoRecursoId;
 
     public RecursoDTO() {
     }
@@ -27,18 +27,16 @@ public class RecursoDTO {
     }
 
     public void setDisponible(boolean disponible) {
+
         this.disponible = disponible;
     }
 
-    public boolean isDisponible() {
-        return disponible;
-    }
+   public String getFecha() {
 
-    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -50,19 +48,19 @@ public class RecursoDTO {
         this.nombreRecurso = nombreRecurso;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getCategoriaId() {
+        return categoriaId;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setCategoriaId(String categoriaId) {
+        this.categoriaId = categoriaId;
     }
 
-    public String getTipoRecurso() {
-        return tipoRecurso;
+    public String getTipoRecursoId() {
+        return tipoRecursoId;
     }
 
-    public void setTipoRecurso(String tipoRecurso) {
-        this.tipoRecurso = tipoRecurso;
+    public void setTipoRecursoId(String tipoRecursoId) {
+        this.tipoRecursoId = tipoRecursoId;
     }
 }
