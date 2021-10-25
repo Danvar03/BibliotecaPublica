@@ -34,7 +34,6 @@ public class ServicioRecurso {
         var recurso = repositorioRecurso.findById(id).get();
         RespuestaRecursoDTO respuestaRecursoDTO = new RespuestaRecursoDTO();
         respuestaRecursoDTO.setDisponible(recurso.getDisponible());
-        respuestaRecursoDTO.setFecha(recurso.getFecha());
         if (!recurso.getDisponible()) {
             respuestaRecursoDTO.setDescripcion("El recurso no se encuentra disponible su fecha de prestamo fue "+recurso.getFecha());
             return respuestaRecursoDTO;
@@ -50,7 +49,6 @@ public class ServicioRecurso {
         Recurso recurso = repositorioRecurso.findById(id).orElseThrow(() -> new RuntimeException("No se encontro el recurso"));
         if (recurso.getDisponible()) {
             recurso.setDisponible(false);
-            recurso.setFecha(objSDF.format(objDate));
             repositorioRecurso.save(recurso);
             respuestaRecursoDTO.setDisponible(false);
             respuestaRecursoDTO.setFecha(objSDF.format(objDate));
@@ -71,7 +69,6 @@ public class ServicioRecurso {
         Recurso recurso = repositorioRecurso.findById(id).orElseThrow(() -> new RuntimeException("No se encontro el recurso"));
         if(!recurso.getDisponible()){
             recurso.setDisponible(true);
-            recurso.setFecha(objSDF.format(objDate));
             repositorioRecurso.save(recurso);
             respuestaRecursoDTO.setDisponible(true);
             respuestaRecursoDTO.setFecha(objSDF.format(objDate));

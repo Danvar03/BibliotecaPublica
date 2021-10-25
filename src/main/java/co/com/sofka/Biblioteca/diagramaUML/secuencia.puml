@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor user
+user -> Interfaz: Crear una pregunta
+Interfaz --> Servidor: Envíar Pregunta
+database Mongo
+Servidor  --> Mongo: Guardar Pregunta
+Servidor  --> Interfaz: Devuelver Pregunta
+
+Interfaz --> user: Mostrar preguntas
+@enduml

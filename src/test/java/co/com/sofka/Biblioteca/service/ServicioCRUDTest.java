@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import static org.mockito.ArgumentMatchers.any;
 
@@ -36,7 +37,7 @@ class ServicioCRUDTest {
         recurso1.setDisponible(false);
         recurso1.setTipoRecursoId("12345");
         recurso1.setCategoriaId("14");
-        recurso1.setFecha("12/10/2021");
+        recurso1.setFecha(LocalDate.now());
 
         var recurso2 = new Recurso();
         recurso2.setId("122");
@@ -44,7 +45,7 @@ class ServicioCRUDTest {
         recurso2.setDisponible(false);
         recurso2.setCategoriaId("12345");
         recurso2.setTipoRecursoId("20");
-        recurso2.setFecha("15/10/2021");
+        recurso2.setFecha(LocalDate.now());
 
         var lista = new ArrayList<Recurso>();
         lista.add(recurso1);
@@ -69,7 +70,7 @@ class ServicioCRUDTest {
         recurso2.setDisponible(false);
         recurso2.setTipoRecursoId("12345");
         recurso2.setCategoriaId("14");
-        recurso2.setFecha("12/10/2021");
+        recurso2.setFecha(LocalDate.now());
 
         var recurso1 = new RecursoDTO();
         recurso1.setId("123");
@@ -77,7 +78,7 @@ class ServicioCRUDTest {
         recurso1.setDisponible(false);
         recurso1.setTipoRecursoId("12345");
         recurso1.setCategoriaId("14");
-        recurso1.setFecha("12/10/2021");
+        recurso2.setFecha(LocalDate.now());
 
         Mockito.when(repositorioRecurso.save(any())).thenReturn(recurso2);
 
@@ -96,7 +97,7 @@ class ServicioCRUDTest {
         recurso2.setDisponible(false);
         recurso2.setTipoRecursoId("12345");
         recurso2.setCategoriaId("14");
-        recurso2.setFecha("12/10/2021");
+        recurso2.setFecha(LocalDate.now());
 
 
         Mockito.when(repositorioRecurso.findById(any())).thenReturn(java.util.Optional.of(recurso2));

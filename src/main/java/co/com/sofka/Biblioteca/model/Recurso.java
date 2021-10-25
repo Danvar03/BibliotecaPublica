@@ -3,6 +3,7 @@ package co.com.sofka.Biblioteca.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Document
@@ -11,7 +12,7 @@ public class Recurso {
     @Id
     private String id;
     private boolean disponible;
-    private String fecha;
+    private LocalDate fecha;
     private String nombreRecurso;
     private String tipoRecursoId;
     private String categoriaId;
@@ -33,11 +34,15 @@ public class Recurso {
         this.disponible = disponible;
     }
 
-   public String getFecha() {
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

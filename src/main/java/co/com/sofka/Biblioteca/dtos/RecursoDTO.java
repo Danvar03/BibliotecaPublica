@@ -1,12 +1,13 @@
 package co.com.sofka.Biblioteca.dtos;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class RecursoDTO {
 
     private String id;
     private boolean disponible;
-    private String fecha;
+    private LocalDate fecha;
     private String nombreRecurso;
     private String categoriaId;
     private String tipoRecursoId;
@@ -31,12 +32,15 @@ public class RecursoDTO {
         this.disponible = disponible;
     }
 
-   public String getFecha() {
+    public boolean isDisponible() {
+        return disponible;
+    }
 
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

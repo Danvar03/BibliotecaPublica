@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+skinparam actorStyle awesome
+left to right direction
+actor :usuario: as user
+actor :Administrator: as admin
+package Biblioteca{
+
+usecase (Lista de recursos) as (UC1)
+usecase (Obtener recursos por Id.) as (UC2)
+usecase (Ver disponibilidad de un recurso) as (UC3)
+usecase (Enumere los recursos por área temática) as (UC4)
+usecase (Lista de recursos por tipo de documento) as (UC5)
+usecase (Enumere los recursos por área temática y tipo de documento) as (UC6)
+usecase (Prestar recurso) as (UC7)
+usecase (Return recurso) as (UC8)
+usecase (Eliminar recurso) as (UC9)
+usecase (Crear recurso) as (UC10)
+usecase (Modificar recurso) as (UC11)
+}
+user --> UC1
+user--> UC2
+user--> UC3
+user --> UC4
+user --> UC5
+user--> UC6
+user--> UC7
+admin--> UC7
+user --> UC8
+admin--> UC8
+admin --> UC9
+admin-->UC10
+admin-->UC11
+
+@enduml

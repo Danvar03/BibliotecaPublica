@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+left to right direction
+actor User as user
+note left of user : Usuario que usa la App de preguntas.
+
+package QuestionsAndAnwers{
+usecase "Crear pregunta" as UseCase1
+usecase "Eliminar pregunta" as UseCase2
+usecase "Leer pregunta" as UseCase3
+usecase "Actualizar pregunta" as UseCase4
+usecase "Responder pregunta" as UseCase5
+usecase "Eliminar respuesta" as UseCase6
+}
+
+
+user --> UseCase1
+user --> UseCase2
+user --> UseCase3
+user --> UseCase4
+user --> UseCase5
+user --> UseCase6
+@enduml
